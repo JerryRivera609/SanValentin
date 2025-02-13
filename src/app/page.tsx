@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [noText, setNoText] = useState("No");
-  const [yesSize, setYesSize] = useState(20); 
+  const [yesSize, setYesSize] = useState(20);
   const [noSize, setNoSize] = useState(20);
   const [imageSrc, setImageSrc] = useState(
     "https://i.pinimg.com/originals/db/aa/c1/dbaac13f6278b91a15e480752b8a7242.gif"
@@ -30,37 +30,33 @@ export default function Home() {
   ];
 
   const handleNoClick = () => {
-    const randomIndex = Math.floor(Math.random() * noResponses.length);
-    setNoText(noResponses[randomIndex]);
-    const randomImageIndex = Math.floor(Math.random() * sadImages.length);
-    setImageSrc(sadImages[randomImageIndex]);
-    setYesSize((prevSize) => prevSize + 10);
-    setNoSize((prevSize) => (prevSize > 10 ? prevSize - 2 : prevSize));
+    setNoText(noResponses[Math.floor(Math.random() * noResponses.length)]);
+    setImageSrc(sadImages[Math.floor(Math.random() * sadImages.length)]);
+    setYesSize((prev) => prev + 10);
+    setNoSize((prev) => Math.max(prev - 2, 10));
   };
 
   return (
-    <section className="bg-[url(/fondo2.jpg)] h-screen flex justify-center items-center text-center">
-      <div className="flex flex-col justify-center">
-        <h1 className="text-white font-bold text-5xl text-center">
-          ¿Quieres ser mi San Valentín?
-        </h1>
+    <section className="bg-[url(/fondo2.jpg)] h-screen flex justify-center items-center text-center px-4">
+      <div className="flex flex-col justify-center w-full max-w-xs">
+        <h1 className="text-white font-bold text-5xl sm:text-4xl">¿Quieres ser mi San Valentín?</h1>
         <img
           src={imageSrc}
-          width={400}
-          height={400}
+          width={250}
+          height={250}
           alt="San Valentin"
-          className="mx-auto transition-all duration-300"
+          className="mx-auto transition-all duration-300 mt-5"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-5 items-center justify-center p-5">
+        <div className="flex justify-center items-center mt-8 space-x-4">
           <button
-            className="bg-green-500 m-4 relative text-white font-bold p-2 rounded-md transition-all duration-300"
-            style={{ fontSize: `${yesSize}px`, padding: `${yesSize / 3}px` }}
+            className="bg-green-500 text-white font-bold rounded-md transition-all duration-300"
+            style={{ fontSize: `${yesSize}px`, padding: `${yesSize / 3}px`, minWidth: "60px" }}
           >
             Sí
           </button>
           <button
-            className="bg-red-500 m-4 text-white font-bold rounded-md transition-all duration-300"
-            style={{ fontSize: `${noSize}px`, padding: `${noSize / 3}px` }}
+            className="bg-red-500 text-white font-bold rounded-md transition-all duration-300"
+            style={{ fontSize: `${noSize}px`, padding: `${noSize / 3}px`, minWidth: "5px" }}
             onClick={handleNoClick}
           >
             {noText}
