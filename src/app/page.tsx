@@ -59,8 +59,8 @@ export default function Home() {
           <h1 className="text-white font-bold text-3xl">¿Quieres ser mi San Valentín?</h1>
           <img
             src={imageSrc}
-            width={250}
-            height={250}
+            width={260}
+            height={260}
             alt="San Valentin"
             className="mx-auto transition-all duration-300"
           />
